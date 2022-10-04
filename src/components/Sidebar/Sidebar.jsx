@@ -1,30 +1,30 @@
 import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { useTheme } from '@mui/styles';
-import { ClassNames } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { selectGenreIdOrCategory } from '../../features/currentGenreIdOrCategory';
 import useStyles from './styles';
+import { useGetGenresQuery } from '../../services/TMDB';
+import genreIcons from '../../assets/genres';
 
-const demoCat = [
-  { label: 'Comedy', Value: ' comedy' },
-  { label: 'Action', Value: ' action' },
-  { label: 'Horror', Value: ' horror' },
-  { label: 'Animation', Value: ' Animation' },
-];
 const cat = [
-  { label: 'Popular', Value: ' Popular' },
-  { label: 'Top rated', Value: ' top_rated' },
-  { label: 'Upcoming', Value: ' Upcoming' },
+  { label: 'Popular', value: 'popular' },
+  { label: 'Top rated', value: 'top_rated' },
+  { label: 'Upcoming', value: 'upcoming' },
 ];
 
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
-
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 function Sidebar({ setMobileOpen }) {
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreIdOrCategory);
   const theme = useTheme();
   const classes = useStyles();
+  const { data, isFetching } = useGetGenresQuery();
+  const dispatch = useDispatch();
+  console.log(genreIdOrCategoryName);
   return (
     <>
       <Link to="/" className={classes.imageLink}>
@@ -39,10 +39,10 @@ function Sidebar({ setMobileOpen }) {
         <ListSubheader> Categories</ListSubheader>
         {cat.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
-              {/* <ListItemIcon>
-                <img src="https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png" height={30} />
-              </ListItemIcon> */}
+            <ListItem onClick={() => dispatch(selectGenreIdOrCategory(value))} button>
+              <ListItemIcon>
+                <img src={genreIcons[label.toLowerCase()]} height={30} />
+              </ListItemIcon>
               <ListItemText primary={label} />
             </ListItem>
           </Link>
@@ -51,13 +51,17 @@ function Sidebar({ setMobileOpen }) {
       <Divider />
       <List>
         <ListSubheader> Genres</ListSubheader>
-        {demoCat.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
-              {/* <ListItemIcon>
-                <img src="https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png" height={30} />
-              </ListItemIcon> */}
-              <ListItemText primary={label} />
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress size="4rem" />
+          </Box>
+        ) : data.genres.map(({ name, id }) => (
+          <Link key={name} className={classes.links} to="/">
+            <ListItem onClick={() => dispatch(selectGenreIdOrCategory(id))} button>
+              <ListItemIcon>
+                <img src={genreIcons[name.toLowerCase()]} height={30} />
+              </ListItemIcon>
+              <ListItemText primary={name} />
             </ListItem>
           </Link>
         ))}
