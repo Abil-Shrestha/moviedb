@@ -9,7 +9,7 @@ function MovieList({ movies }) {
 
   return (
     <Grid container className={classes.moviesContainer}>
-      {movies.results.slice(0,12).map((movie, i) => (
+      {movies.results.slice(0, 12).map((movie, i) => (
         <Movie key={i} movie={movie} i={i} />
       ))}
     </Grid>

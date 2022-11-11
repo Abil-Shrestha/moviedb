@@ -98,7 +98,7 @@ const MovieInformation = () => {
           </Grid>
           <Grid item className={classes.genresContainer}>
             {data?.genres?.map((genre, i) => (
-              <Link key={genre.name} className={classes.links} to="/" onClick={() => dispatch(selectGenreIdOrCategory(genre.id))}>
+              <Link key={i + 1} className={classes.links} to="/" onClick={() => dispatch(selectGenreIdOrCategory(genre.id))}>
                 <img src={genreIcons[genre.name.toLowerCase()]} className={classes.genreImage} height={30} />
                 <Typography variant="subtitle1" color="textPrimary">
                   {genre?.name}
@@ -183,7 +183,7 @@ const MovieInformation = () => {
           className={classes.video}
           frameBorder="0"
           title="Trailer"
-          src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+          src={`https://www.youtube.com/embed/${data.videos.results[0]}`}
           allow="autoplay"
         />
       </Modal>

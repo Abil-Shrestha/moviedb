@@ -6,12 +6,10 @@ import { Link } from 'react-router-dom';
 import useStyles from './styles';
 
 const Movie = ({ movie, i }) => {
-  
   const classes = useStyles();
-
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.movie}>
-      <Grow in key={i} timeout={(i + 3) * 250}>
+      <Grow in key={i + 1} timeout={(i + 3) * 950}>
         <Link className={classes.links} to={`/movie/${movie.id}`}>
           <img
             alt={movie.title}
