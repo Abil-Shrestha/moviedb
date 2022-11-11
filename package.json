@@ -11,7 +11,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "@alan-ai/alan-sdk-web": "^1.8.28", 
-    "@emotion/react": "^11.4.1", 
+    "@emotion/react": "^11.5.0", 
     "@emotion/styled": "^11.3.0", 
     "@mui/icons-material": "^5.0.3", 
     "@mui/material": "^5.0.3", 
