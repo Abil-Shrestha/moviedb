@@ -19,7 +19,7 @@ export const fetchToken = async () => {
       window.location.href = `https://www.themoviedb.org/authenticate/${token}?redirect_to=${window.location.origin}/approved`;
     }
   } catch (error) {
-    console.log('no movie for you ');
+    console.trace(error);
   }
 };
 
@@ -33,7 +33,7 @@ export const createSessionId = async () => {
       localStorage.setItem('session_id', session_id);
       return session_id;
     } catch (error) {
-      console.log(error,"session_id");
+      console.trace(error, 'session_id');
     }
   }
 };

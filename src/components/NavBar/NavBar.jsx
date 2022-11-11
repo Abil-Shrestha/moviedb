@@ -43,7 +43,7 @@ const NavBar = () => {
 
   return (
     <>
-      <AppBar position="fixed">
+      <AppBar position="fixed" sx={{ boxShadow: '0' }}>
         <Toolbar className={classes.toolbar}>
           {isMobile && (
           <IconButton
@@ -77,7 +77,7 @@ const NavBar = () => {
                 <Avatar
                   style={{ width: 30, height: 30 }}
                   alt="profile"
-                  src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
+                  src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
                 />
               </Button>
             )}

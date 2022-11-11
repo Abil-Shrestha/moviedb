@@ -20,13 +20,13 @@ const Pagination = ({ totalPages, currentPage, setPage }) => {
   if (totalPages === 0) return null;
   return (
     <div className={classes.container}>
-      <Button onClick={handlePrev} className={classes.button} variant="contained" type="button">
+      <Button onClick={handlePrev} className={classes.button} variant="outlined" type="button">
         Prev
       </Button>
       <Typography variant="h4" className={classes.pageNumber}>
         {currentPage}
       </Typography>
-      <Button onClick={handleNext} className={classes.button} variant="contained" type="button">
+      <Button onClick={handleNext} className={classes.button} variant="outlined" type="button">
         Next
       </Button>
     </div>

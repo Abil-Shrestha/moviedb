@@ -5,9 +5,11 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     padding: '10% 0',
+    backgroundColor: theme.palette.mode === 'light' ? '#d4d6d5' : '',
+    backdropFilter: 'blur(10px)',
   },
   image: {
-    width: '70%',
+    width: '58.5%',
   },
   links: {
     color: theme.palette.text.primary,
